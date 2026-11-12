@@ -1,111 +1,105 @@
 {
-  "date": "2026-11-12",
-  "dateLabel": "11월 12일 (목)",
-  "headline": "AI 주식이 다시 살아나면서 뉴욕증시가 일제히 올랐어. 나스닥 1.6%, 반도체지수는 5% 넘게 뛰었어.",
-  "alert": "내일 밤 10시 반 미국 10월 PPI가 이번 주 핵심이야. 오늘 밤엔 실업수당 청구건수부터 확인해.",
+  "date": "2026-11-13",
+  "dateLabel": "11월 13일 (금)",
+  "headline": "젠슨 황 CEO 사임 충격에 뉴욕증시가 소폭 내렸어. 유가 급등에 10년물 금리는 5.1%를 넘었어.",
+  "alert": "오늘 밤 10시 반 미국 10월 PPI가 핵심이야. 예상보다 높으면 12월 빅스텝 얘기가 커질 수 있어.",
   "market": [
     {
       "label": "S&P 500",
-      "value": "7,619.38",
-      "change": "+1.31%",
-      "dir": "up"
+      "value": "7,592.40",
+      "change": "-0.35%",
+      "dir": "down"
     },
     {
       "label": "나스닥",
-      "value": "25,466.19",
-      "change": "+1.60%",
-      "dir": "up"
+      "value": "25,366.09",
+      "change": "-0.39%",
+      "dir": "down"
     },
     {
       "label": "다우",
-      "value": "52,486.49",
-      "change": "+0.49%",
-      "dir": "up"
+      "value": "52,297.09",
+      "change": "-0.36%",
+      "dir": "down"
     },
     {
       "label": "코스피 (전일 종가)",
-      "value": "5,375.36",
-      "change": "+2.60%",
-      "dir": "up"
+      "value": "5,342.73",
+      "change": "-0.61%",
+      "dir": "down"
     },
     {
       "label": "코스닥 (전일 종가)",
-      "value": "705.10",
-      "change": "+5.62%",
-      "dir": "up"
+      "value": "696.53",
+      "change": "-1.22%",
+      "dir": "down"
     },
     {
       "label": "미 국채 10년물",
-      "value": "~5.0% (휴장)",
-      "change": "변동 없음",
-      "dir": "flat"
+      "value": "5.12%",
+      "change": "+0.13%p",
+      "dir": "up"
     },
     {
       "label": "원·달러",
-      "value": "1,333.6원",
-      "change": "-3.9원",
+      "value": "1,330.7원",
+      "change": "-2.9원",
       "dir": "down"
     },
     {
       "label": "WTI",
-      "value": "$86.53",
-      "change": "+0.57%",
+      "value": "$88.74",
+      "change": "+2.55%",
       "dir": "up"
     },
     {
       "label": "브렌트유",
-      "value": "$92.76",
-      "change": "+1.39%",
+      "value": "$95.82",
+      "change": "+3.3%",
       "dir": "up"
     },
     {
       "label": "비트코인",
-      "value": "$73,000대",
-      "change": "약보합",
-      "dir": "flat"
+      "value": "$71,500대",
+      "change": "12주 최저권",
+      "dir": "down"
     }
   ],
-  "marketNote": "미국 증시·유가는 11일(현지) 종가, 코스피·코스닥은 11일 종가, 원·달러는 11일 오후 3시 30분 기준. 미 채권시장은 재향군인의 날 휴장이라 10년물은 10일 수준.",
+  "marketNote": "미국 증시·유가·금리는 12일(현지) 종가, 코스피·코스닥·원·달러는 12일 종가 기준. 비트코인은 13일 아침 시세. 달러인덱스는 확인된 수치가 없어 뺐어.",
   "news": [
     {
-      "title": "AI주 반등, 반도체지수 5% 넘게 급등",
-      "body": "코어위브가 예상을 넘는 실적과 전망 상향으로 20% 넘게 올랐고, 마이크론은 12%쯤, SK하이닉스 ADR도 9% 넘게 뛰었어. 애플은 사상 최고가를 새로 썼어.",
-      "sowhat": "AI 성장 둔화 걱정이 일단 한숨 돌렸고, 국내 반도체주에도 우호적인 분위기야."
+      "title": "젠슨 황, 엔비디아 CEO 전격 사임",
+      "body": "젠슨 황이 CEO와 이사직에서 즉시 물러나고, 콜레트 크레스 CFO가 임시 CEO를 맡아. 엔비디아는 장중 14%까지 빠졌다가 4.3% 하락으로 마감했어.",
+      "sowhat": "18일 새벽 실적 발표까지 AI·반도체주 변동성이 커질 수 있어."
     },
     {
-      "title": "12월 금리 인상 확률 90% 안팎",
-      "body": "10월 CPI가 예상보다 높게 나온 뒤 12월 0.25%p 인상은 거의 다 반영됐고, 0.5%p 빅스텝 확률도 11% 정도야. 굴스비 시카고 연은 총재는 물가 보고서가 걱정스럽다고 했어.",
-      "sowhat": "주식은 반등했지만 금리 부담은 그대로 남아 있어."
+      "title": "트럼프 \"이란 협상 필요 없다\"…유가 급등",
+      "body": "트럼프 대통령 발언에 호르무즈 해협 불확실성이 다시 커졌어. 브렌트유는 3.3% 올라 95달러대, WTI는 88달러대로 올랐어.",
+      "sowhat": "유가가 오르면 물가 부담이 커져서 금리 걱정도 같이 커질 수 있어."
     },
     {
-      "title": "미·이란 협상 기대 후퇴에 유가 반등",
-      "body": "이란 측이 농축 핵물질을 국내에 두겠다고 하면서 종전 협상 기대가 꺾였어. 유가는 사흘 만에 올라 브렌트유가 92달러대로 올라섰어.",
-      "sowhat": "유가가 다시 오르면 물가 잡기가 더 어려워질 수 있어."
+      "title": "미 10년물 금리 5.1% 돌파",
+      "body": "10월 CPI가 예상보다 높았던 여파로 10년물 금리가 5.12%까지 올랐어. 페드워치 기준 12월 인상은 사실상 확정이고 0.5%p 인상 확률도 15% 안팎이야.",
+      "sowhat": "금리 부담이 주식 반등의 발목을 잡고 있어."
     },
     {
-      "title": "엔비디아 반등했지만 불확실성 여전",
-      "body": "엔비디아는 2.9% 반등했지만, 젠슨 황 관련 보도로 이사회가 조사에 착수했어. 베어드는 투자의견을 중립으로 낮췄고, 모건스탠리는 최선호주에서 뺐어.",
-      "sowhat": "지수 비중이 큰 종목이라 이 이슈가 길어지면 나스닥에 부담이 될 수 있어."
+      "title": "코스피 숨 고르기, 코스닥 700 아래로",
+      "body": "단기 급등 피로감과 옵션 만기 영향에 코스피는 0.61% 내린 5,342에 마감했어. SK하이닉스는 엔비디아 소식에 1.8% 내렸어.",
+      "sowhat": "오늘 국내 반도체주도 엔비디아 이슈에 민감하게 움직일 수 있어."
     }
   ],
   "schedule": [
     {
       "time": "오늘 22:30",
-      "stars": 2,
-      "title": "미국 주간 신규 실업수당 청구건수",
-      "detail": "고용시장이 식고 있는지 확인하는 주간 지표."
-    },
-    {
-      "time": "내일 22:30",
       "stars": 3,
       "title": "미국 10월 생산자물가(PPI)",
       "detail": "CPI에 이어 도매 물가 흐름 확인. 이번 주 최대 이벤트."
     },
     {
-      "time": "이번 주 내내",
-      "stars": 2,
-      "title": "연준 인사 발언",
-      "detail": "12월 인상 폭(0.25%p vs 0.5%p)에 대한 힌트 주목."
+      "time": "11월 18일 새벽",
+      "stars": 3,
+      "title": "엔비디아 3분기 실적",
+      "detail": "CEO 교체 후 첫 실적. 현지 17일 발표."
     },
     {
       "time": "12월 10일 새벽",
@@ -114,35 +108,35 @@
       "detail": "현지 12월 8~9일 회의. 인상 폭이 핵심."
     }
   ],
-  "scheduleNote": "PPI가 예상보다 높으면 빅스텝 얘기가 커지면서 금리·달러가 오를 수 있고, 낮으면 금리 걱정이 누그러질 수도 있어. 어디까지나 가능성이야.",
+  "scheduleNote": "PPI가 예상보다 높으면 빅스텝 얘기가 커지면서 금리·달러가 오를 수 있고, 낮으면 금리 부담이 조금 누그러질 수도 있어. 어디까지나 가능성이야.",
   "term": {
-    "word": "필라델피아 반도체지수 (SOX)",
-    "body": "미국에 상장된 주요 반도체 기업 30개 정도를 묶은 지수야. 엔비디아, 마이크론, AMD 같은 회사가 들어 있어서, 이 지수가 오르면 다음 날 삼성전자나 SK하이닉스도 같이 힘을 받는 경우가 많아. 그래서 아침에 꼭 챙겨 보는 지표야."
+    "word": "생산자물가지수 (PPI)",
+    "body": "기업이 만든 물건을 도매로 넘길 때 가격이 얼마나 변했는지 보여주는 지표야. 공장 출고 가격이 오르면 시간이 지나 소비자물가에도 반영되는 경우가 많아서, 물가의 앞날을 미리 보는 신호로 많이 봐."
   },
   "sources": [
     {
-      "title": "AP – How major US stock indexes fared Wednesday 11/11/2026",
-      "url": "https://mymotherlode.com/news/national/11301296/how-major-us-stock-indexes-fared-wednesday-11-11-2026.html"
+      "title": "이데일리 – 엔비디아 급락 후 낙폭 축소…나스닥 0.4%↓",
+      "url": "https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=01843366645645392"
     },
     {
-      "title": "머니투데이방송 – AI 투자심리 회복에 일제히 상승…나스닥 1.60%↑",
-      "url": "https://news.mtn.co.kr/article/2026111206321181370"
+      "title": "Vista Partners – Stock Market Today, November 12, 2026",
+      "url": "https://vistapglobal.com/stock-market-today-november-12-2026-stocks-fall-as-treasury-yields-hit-5-10-oil-rises-and-nvidia-faces-leadership-reset-amd-crwv-eprx-googl-modd-msft-nvda-ser-spcx-ttek-ual/"
     },
     {
-      "title": "TheStreet – Stock Market Today (Nov. 11, 2026)",
-      "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-nov-11-2026"
+      "title": "서울신문 – 미국 증시, 주요 지수 일제히 하락 마감",
+      "url": "https://www.seoul.co.kr/news/economy/2026/11/13/20261113500006"
     },
     {
-      "title": "파이낸셜뉴스 – 미·이란 협상 기대 후퇴에 국제유가 상승",
-      "url": "https://www.fnnews.com/news/202611120653001497"
+      "title": "Businesskorea – 코스피 0.61% 내린 5,340선 마감",
+      "url": "https://www.businesskorea.co.kr/news/articleView.html?idxno=281164"
     },
     {
-      "title": "아시아경제 – 코스피, 136.23P 오른 5375.36 마감",
-      "url": "https://www.asiae.co.kr/article/2026111115344231475"
+      "title": "이투데이 – 국제유가 급등, 브렌트유 3.3%↑",
+      "url": "https://www.etoday.co.kr/news/view/2647638"
     },
     {
-      "title": "블록미디어 – 비트코인, 7만3000달러대 약세",
-      "url": "https://www.blockmedia.co.kr/archives/1164735"
+      "title": "토큰포스트 – 모닝 시세브리핑, 비트코인 71,567달러",
+      "url": "https://www.tokenpost.kr/news/briefing/437348"
     }
   ]
 }
