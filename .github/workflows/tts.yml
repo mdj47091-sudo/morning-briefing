@@ -1,0 +1,32 @@
+name: AI 성우 음성 만들기
+
+on:
+  push:
+    branches: [main]
+    paths: [briefing.txt]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tts
+  cancel-in-progress: true
+
+jobs:
+  tts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: briefing.txt를 MP3로 변환
+        env:
+          GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
+          TTS_VOICE: ${{ vars.TTS_VOICE }}
+        run: python3 tts/synthesize.py
+      - name: 결과 저장
+        run: |
+          git add briefing.mp3 audio.json 2>/dev/null || true
+          if git diff --cached --quiet; then echo "변경 없음"; exit 0; fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "AI 성우 음성 업데이트"
+          git pull --rebase origin main
+          git push origin main

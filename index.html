@@ -41,6 +41,10 @@
   @media (prefers-color-scheme: dark){ .alt button,.alt select{border-color:rgba(0,0,0,.3)} }
   .alt select{flex:0 0 78px;padding:0 8px}
   .alt select option{color:#000}
+  #aiBox .siri{margin-bottom:8px}
+  #aiBox.on ~ .siri{background:transparent;color:var(--accent-ink);border:1px solid rgba(255,255,255,.35);font-size:15px;padding:11px}
+  .bar{height:4px;background:rgba(255,255,255,.3);border-radius:4px;overflow:hidden;margin:0 2px 10px}
+  .bar i{display:block;height:100%;width:0;background:var(--accent-ink);transition:width .3s}
   .now{font-size:12.5px;margin-top:8px;opacity:.9;min-height:1.2em}
   .alert{display:flex;gap:10px;background:var(--accent-soft);border-radius:12px;padding:12px 14px;margin:12px 0;font-size:14px}
   .alert b{color:var(--accent)}
@@ -101,6 +105,11 @@
 
   <div class="listen">
     <div class="lt">알람 끄면 자동으로 들리지만, 여기서도 바로 들을 수 있어</div>
+    <div id="aiBox" style="display:none">
+      <button class="siri" id="aiPlay">🎙️ AI 성우로 듣기</button>
+      <audio id="aiAudio" preload="none"></audio>
+      <div class="bar"><i id="aiProg"></i></div>
+    </div>
     <a class="siri" id="siri" href="shortcuts://run-shortcut?name=%EB%AA%A8%EB%8B%9D%EB%B8%8C%EB%A6%AC%ED%95%91">🎧 시리로 듣기</a>
     <div class="alt">
       <button id="tts">▶ 앱에서 듣기</button>
@@ -202,6 +211,7 @@ async function load(){
       const t = await fetchNoCache('briefing.txt');
       scriptText = t.ok ? await t.text() : (b.script || '');
     }
+    if (!wanted) setupAudio(b.date);
   } catch(e) {
     $('#content').innerHTML = '<div class="state">브리핑을 못 불러왔어. 인터넷 연결 확인하고 ↻ 눌러줘.</div>';
   }
@@ -243,6 +253,35 @@ $('#tts').onclick = () => {
   if (state === 'idle') { chunks = split(scriptText); idx = 0; }
   state = 'playing'; $('#tts').textContent = '❚❚ 일시정지'; speakNext();
 };
+
+/* AI voice MP3 (Google TTS via GitHub Actions) */
+async function setupAudio(date){
+  try {
+    const r = await fetchNoCache('audio.json');
+    if (!r.ok) return;
+    const a = await r.json();
+    if (!a.date || a.date !== date) return;
+    const audio = $('#aiAudio');
+    audio.src = 'briefing.mp3?d=' + encodeURIComponent(a.generatedAt || a.date);
+    $('#aiBox').style.display = 'block'; $('#aiBox').classList.add('on');
+    audio.playbackRate = parseFloat($('#rate').value);
+    $('#rate').addEventListener('change', () => { audio.playbackRate = parseFloat($('#rate').value); });
+    $('#aiPlay').onclick = () => {
+      if (state === 'playing') { state = 'paused'; synth && synth.cancel(); $('#tts').textContent = '▶ 이어 듣기'; }
+      if (audio.paused) { audio.play().catch(() => { $('#now').textContent = '재생을 시작하지 못했어. 다시 눌러줘.'; }); }
+      else audio.pause();
+    };
+    audio.onplay = () => { $('#aiPlay').textContent = '❚❚ 일시정지'; };
+    audio.onpause = () => { $('#aiPlay').textContent = '🎙️ 이어 듣기'; };
+    audio.onended = () => { $('#aiPlay').textContent = '🎙️ 다시 듣기'; $('#now').textContent = '브리핑 끝! 좋은 하루 보내.'; };
+    audio.ontimeupdate = () => {
+      if (!audio.duration) return;
+      $('#aiProg').style.width = (audio.currentTime / audio.duration * 100) + '%';
+      const f = s => Math.floor(s/60) + ':' + String(Math.floor(s%60)).padStart(2,'0');
+      $('#now').textContent = f(audio.currentTime) + ' / ' + f(audio.duration);
+    };
+  } catch(e) {}
+}
 
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
