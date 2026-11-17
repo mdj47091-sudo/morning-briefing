@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-17",
+  "engine": "edge",
+  "voice": "ko-KR-SunHiNeural",
+  "bytes": 967392,
+  "samples": [
+    {
+      "voice": "ko-KR-InJoonNeural",
+      "file": "samples/ko-KR-InJoonNeural.mp3"
+    },
+    {
+      "voice": "ko-KR-HyunsuMultilingualNeural",
+      "file": "samples/ko-KR-HyunsuMultilingualNeural.mp3"
+    }
+  ],
+  "generatedAt": "2026-11-17T03:01:49+00:00"
+}
