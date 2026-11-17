@@ -42,6 +42,9 @@
   .alt select{flex:0 0 78px;padding:0 8px}
   .alt select option{color:#000}
   #aiBox .siri{margin-bottom:8px}
+  .samples{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px;margin:-2px 0 10px}
+  .samples button{border:1px solid rgba(255,255,255,.4);background:transparent;color:var(--accent-ink);border-radius:999px;padding:4px 10px;font:inherit;font-size:12.5px;cursor:pointer}
+  .samples button.sel{background:var(--accent-ink);color:var(--accent);font-weight:700}
   #aiBox.on ~ .siri{background:transparent;color:var(--accent-ink);border:1px solid rgba(255,255,255,.35);font-size:15px;padding:11px}
   .bar{height:4px;background:rgba(255,255,255,.3);border-radius:4px;overflow:hidden;margin:0 2px 10px}
   .bar i{display:block;height:100%;width:0;background:var(--accent-ink);transition:width .3s}
@@ -264,6 +267,19 @@ async function setupAudio(date){
     const audio = $('#aiAudio');
     audio.src = 'briefing.mp3?d=' + encodeURIComponent(a.generatedAt || a.date);
     $('#aiBox').style.display = 'block'; $('#aiBox').classList.add('on');
+    const names = {'ko-KR-SunHiNeural':'선히 (여)','ko-KR-InJoonNeural':'인준 (남)','ko-KR-HyunsuMultilingualNeural':'현수 (남)'};
+    if (a.samples && a.samples.length) {
+      const box = document.createElement('div'); box.className = 'samples';
+      box.innerHTML = '<span>목소리 비교:</span>' + [{voice:a.voice, file:'briefing.mp3'}].concat(a.samples.filter(s => s.voice !== a.voice))
+        .map((s,i) => `<button data-src="${esc(s.file)}" class="${i===0?'sel':''}">${esc(names[s.voice] || s.voice)}</button>`).join('');
+      $('#aiBox').appendChild(box);
+      box.querySelectorAll('button').forEach(btn => btn.onclick = () => {
+        box.querySelectorAll('button').forEach(x => x.classList.remove('sel')); btn.classList.add('sel');
+        audio.src = btn.dataset.src + '?d=' + encodeURIComponent(a.generatedAt || a.date);
+        audio.playbackRate = parseFloat($('#rate').value);
+        audio.play().catch(()=>{});
+      });
+    }
     audio.playbackRate = parseFloat($('#rate').value);
     $('#rate').addEventListener('change', () => { audio.playbackRate = parseFloat($('#rate').value); });
     $('#aiPlay').onclick = () => {
