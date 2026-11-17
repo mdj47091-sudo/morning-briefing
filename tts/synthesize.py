@@ -2,7 +2,7 @@
 
 GitHub Actions에서 실행돼요.
 - 시크릿 GOOGLE_TTS_API_KEY가 있으면 구글 Cloud Text-to-Speech (변수 TTS_VOICE, 기본 ko-KR-Chirp3-HD-Aoede)
-- 없으면 마이크로소프트 엣지 음성(edge-tts, 비공식) 사용 (변수 EDGE_VOICE, 기본 ko-KR-SunHiNeural)
+- 없으면 마이크로소프트 엣지 음성(edge-tts, 비공식) 사용 (변수 EDGE_VOICE, 기본 ko-KR-HyunsuMultilingualNeural)
 - tts/samples.txt에 음성 이름을 한 줄씩 적어두면 samples/<음성>.mp3 비교용 샘플도 만들어요.
 """
 import base64, datetime, json, os, subprocess, sys, urllib.request, urllib.error
@@ -67,7 +67,7 @@ def main():
         except Exception as e:
             print(e, "-> 엣지 음성으로 대체")
     if audio is None:
-        voice = os.environ.get("EDGE_VOICE", "").strip() or "ko-KR-SunHiNeural"
+        voice = os.environ.get("EDGE_VOICE", "").strip() or "ko-KR-HyunsuMultilingualNeural"
         audio = edge(voice, "briefing.txt", "briefing.mp3", rate)
         engine = "edge"
     samples = []
