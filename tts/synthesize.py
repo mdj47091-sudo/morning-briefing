@@ -38,8 +38,28 @@ def synth(key, voice, text):
 
 
 def edge(voice, src, out, rate):
-    subprocess.run(["edge-tts", "--voice", voice, f"--rate={rate}", "--file", src, "--write-media", out], check=True, timeout=300)
-    return open(out, "rb").read()
+    """문단별로 나눠 변환하고, 느리거나 실패한 문단은 최대 4번까지 다시 시도해요."""
+    import tempfile, time
+    paras = [p.strip() for p in open(src, encoding="utf-8").read().split("\n") if p.strip()]
+    parts = []
+    with tempfile.TemporaryDirectory() as tmp:
+        for i, p in enumerate(paras):
+            tf, mf = f"{tmp}/{i}.txt", f"{tmp}/{i}.mp3"
+            open(tf, "w", encoding="utf-8").write(p)
+            for attempt in range(1, 5):
+                try:
+                    subprocess.run(["edge-tts", "--voice", voice, f"--rate={rate}", "--file", tf, "--write-media", mf],
+                                   check=True, timeout=90)
+                    parts.append(open(mf, "rb").read())
+                    break
+                except Exception as e:
+                    print(f"문단 {i+1} 시도 {attempt} 실패: {e}")
+                    if attempt == 4:
+                        raise
+                    time.sleep(5 * attempt)
+    audio = b"".join(parts)
+    open(out, "wb").write(audio)
+    return audio
 
 
 def google(key, text):
