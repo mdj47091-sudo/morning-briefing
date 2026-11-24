@@ -93,6 +93,14 @@
   .news .so{margin-left:32px;font-size:13.5px;background:var(--accent-soft);border-radius:10px;padding:8px 10px}
   .news .so b{color:var(--accent)}
 
+  .voices .v{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+  .voices .v:first-of-type{border-top:0;padding-top:2px}
+  .voices .av{flex:0 0 40px;height:40px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:900;font-size:16px}
+  .voices .who{font-weight:800;font-size:15px}
+  .voices .role{font-size:12px;color:var(--sub);font-weight:500;margin-left:4px}
+  .voices .said{font-size:14.5px;margin-top:3px}
+  .voices .why{font-size:13px;color:var(--sub);margin-top:4px}
+  .voices .why b{color:var(--accent)}
   .sched .row{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
   .sched .row:first-of-type{border-top:0;padding-top:2px}
   .sched .tm{flex:0 0 80px;font-size:13px;font-weight:600}
@@ -289,6 +297,11 @@ function briefingHTML(b, opts={}){
     h += `<div class="card news"><div class="label">핵심 뉴스 <span style="font-weight:500">눌러서 펼치기</span></div>` +
       b.news.map((n,i) => `<details><summary><span class="no mono">${i+1}</span><span>${esc(n.title)}</span><span class="chev">⌄</span></summary>
         <div class="body">${esc(n.body)}</div>${n.sowhat ? `<div class="so"><b>그래서?</b> ${esc(n.sowhat)}</div>` : ''}</details>`).join('') + `</div>`;
+  if (b.voices?.length)
+    h += `<div class="card voices"><div class="label">주요 인물 발언</div>` +
+      b.voices.map(v => `<div class="v"><div class="av">${esc((v.who || '?').trim().charAt(0))}</div><div style="min-width:0">
+        <div class="who">${esc(v.who)}<span class="role">${esc(v.role || '')}${v.when ? ' · ' + esc(v.when) : ''}</span></div>
+        <div class="said">${esc(v.said)}</div>${v.why ? `<div class="why"><b>시장 반응·의미</b> ${esc(v.why)}</div>` : ''}</div></div>`).join('') + `</div>`;
   if (b.schedule?.length)
     h += `<div class="card sched"><div class="label">일정 (한국 시간)</div>` +
       b.schedule.map(s => `<div class="row"><div class="tm mono">${esc(s.time)}<div class="st">${'★'.repeat(s.stars||1)}</div></div><div><div class="tt">${esc(s.title)}</div>${s.detail ? `<div class="dd">${esc(s.detail)}</div>` : ''}</div></div>`).join('') +
