@@ -1,5 +1,5 @@
 // 앱 화면은 캐시해 두고, 브리핑 데이터는 항상 최신을 먼저 가져옴
-const CACHE = 'morning-briefing-v3';
+const CACHE = 'morning-briefing-v4';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k))))); self.clients.claim(); });

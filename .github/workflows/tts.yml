@@ -3,7 +3,7 @@ name: AI 성우 음성 만들기
 on:
   push:
     branches: [main]
-    paths: [briefing.txt]
+    paths: [briefing.txt, .github/workflows/tts.yml, tts/synthesize.py]
   workflow_dispatch:
 
 permissions:
@@ -29,7 +29,8 @@ jobs:
         run: python3 tts/synthesize.py
       - name: 결과 저장
         run: |
-          git add briefing.mp3 audio.json samples 2>/dev/null || true
+          git add briefing.mp3 audio.json
+          [ -d samples ] && git add samples || true
           if git diff --cached --quiet; then echo "변경 없음"; exit 0; fi
           git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "AI 성우 음성 업데이트"
           git pull --rebase origin main

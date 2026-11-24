@@ -5,300 +5,459 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>모닝 브리핑</title>
 <meta name="description" content="매일 아침 AI가 정리해 읽어주는 거시경제 브리핑">
-<meta name="theme-color" content="#0f5c4a">
+<meta name="theme-color" content="#f5f6f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="모닝 브리핑">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f4f1ea; --paper:#fffdf8; --ink:#1b1a17; --sub:#6b665c; --line:#e3ddd0;
-    --accent:#0f5c4a; --accent-ink:#ffffff; --accent-soft:#e2efe9; --up:#c2412d; --down:#1f5fbf; --warn:#b26b00;
+    --bg:#f5f6f8; --card:#ffffff; --ink:#111318; --sub:#6b7280; --line:#e6e8ec; --soft:#f0f2f5;
+    --accent:#2f4bd8; --accent-ink:#ffffff; --accent-soft:#e8ecfd;
+    --up:#14a44d; --up-soft:#e3f6ea; --down:#e03131; --down-soft:#fde8e8; --flat:#6b7280;
+    --warn:#c77700; --radius:18px;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --bg:#12120e; --paper:#1c1c16; --ink:#eeeadf; --sub:#a39d8f; --line:#33322a;
-      --accent:#6fd0b1; --accent-ink:#0d1f19; --accent-soft:#1f342c; --up:#ff7a63; --down:#7aa8ff; --warn:#f0b04a; }
+    :root{ --bg:#0d0f14; --card:#171a21; --ink:#eef0f4; --sub:#9aa1ad; --line:#262a33; --soft:#1e222b;
+      --accent:#8ea2ff; --accent-ink:#0d0f14; --accent-soft:#1d2440;
+      --up:#3ddc84; --up-soft:#12301f; --down:#ff6b6b; --down-soft:#3a1717; --warn:#f0b04a; }
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:640px;margin:0 auto;padding:calc(14px + env(safe-area-inset-top)) 16px calc(40px + env(safe-area-inset-bottom))}
-  .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-  .kicker{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.1em;color:var(--sub);text-transform:uppercase}
-  .icon-btn{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;width:38px;height:38px;font-size:17px;cursor:pointer}
-  h1{font-size:30px;font-weight:900;margin:2px 0 0;letter-spacing:-.02em}
-  .date{font-size:14px;color:var(--sub)}
-  .headline{margin:14px 0 0;font-size:17px;font-weight:700;line-height:1.55}
-  .listen{background:var(--accent);color:var(--accent-ink);border-radius:20px;padding:18px;margin:18px 0 8px}
-  .listen .lt{font-size:13px;opacity:.85;margin-bottom:10px}
-  .siri{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:0;border-radius:14px;background:var(--accent-ink);color:var(--accent);font:inherit;font-weight:900;font-size:18px;padding:15px;cursor:pointer;text-decoration:none}
-  .alt{display:flex;gap:8px;margin-top:10px;align-items:center}
-  .alt button,.alt select{flex:1;border:1px solid rgba(255,255,255,.35);background:transparent;color:var(--accent-ink);border-radius:12px;height:42px;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
-  @media (prefers-color-scheme: dark){ .alt button,.alt select{border-color:rgba(0,0,0,.3)} }
-  .alt select{flex:0 0 78px;padding:0 8px}
-  .alt select option{color:#000}
-  #aiBox .siri{margin-bottom:8px}
-  .samples{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px;margin:-2px 0 10px}
-  .samples button{border:1px solid rgba(255,255,255,.4);background:transparent;color:var(--accent-ink);border-radius:999px;padding:4px 10px;font:inherit;font-size:12.5px;cursor:pointer}
-  .samples button.sel{background:var(--accent-ink);color:var(--accent);font-weight:700}
-  #aiBox.on ~ .siri{background:transparent;color:var(--accent-ink);border:1px solid rgba(255,255,255,.35);font-size:15px;padding:11px}
-  .bar{height:4px;background:rgba(255,255,255,.3);border-radius:4px;overflow:hidden;margin:0 2px 10px}
-  .bar i{display:block;height:100%;width:0;background:var(--accent-ink);transition:width .3s}
-  .now{font-size:12.5px;margin-top:8px;opacity:.9;min-height:1.2em}
-  .alert{display:flex;gap:10px;background:var(--accent-soft);border-radius:12px;padding:12px 14px;margin:12px 0;font-size:14px}
-  .alert b{color:var(--accent)}
-  section{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px 16px;margin:14px 0}
-  h2{font-size:18px;margin:0 0 12px;font-weight:800}
-  .num{font-family:"IBM Plex Mono",monospace;color:var(--accent);margin-right:6px}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-  .tile{border:1px solid var(--line);border-radius:12px;padding:10px 12px}
-  .tile .lbl{font-size:12px;color:var(--sub)}
-  .tile .val{font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:500}
-  .tile .chg{font-size:13px;font-weight:700}
-  .up{color:var(--up)} .down{color:var(--down)} .flat{color:var(--sub)}
-  .note{font-size:12px;color:var(--sub);margin-top:8px}
-  .news{list-style:none;padding:0;margin:0}
-  .news li{padding:12px 0;border-top:1px dashed var(--line)}
-  .news li:first-child{border-top:0;padding-top:0}
-  .news .t{font-weight:700;font-size:15.5px}
-  .news .d{font-size:14.5px;margin:4px 0}
-  .so{font-size:13.5px;background:var(--bg);border-left:3px solid var(--accent);padding:6px 10px;border-radius:0 8px 8px 0}
-  .so b{color:var(--accent)}
-  table{width:100%;border-collapse:collapse;font-size:14px}
-  td{padding:9px 4px;border-top:1px solid var(--line);vertical-align:top}
-  tr:first-child td{border-top:0}
-  td.time{font-family:"IBM Plex Mono",monospace;white-space:nowrap;width:88px;font-weight:500}
-  .star{color:var(--warn);font-weight:700;letter-spacing:-1px}
-  .det{display:block;font-size:13px;color:var(--sub)}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  button{font:inherit;color:inherit}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+  .wrap{max-width:560px;margin:0 auto;padding:calc(12px + env(safe-area-inset-top)) 16px calc(96px + env(safe-area-inset-bottom))}
+  header.top{display:flex;justify-content:space-between;align-items:center;margin:4px 0 14px}
+  .brand{font-size:13px;color:var(--sub);font-weight:500}
+  .brand b{color:var(--ink);font-weight:900;font-size:20px;display:block;letter-spacing:-.02em}
+  .icon-btn{border:0;background:var(--card);border-radius:999px;width:40px;height:40px;font-size:17px;cursor:pointer;box-shadow:0 0 0 1px var(--line) inset}
+  .view{display:none}
+  .view.on{display:block;animation:fade .2s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .card{background:var(--card);border-radius:var(--radius);padding:16px;margin:0 0 12px;box-shadow:0 0 0 1px var(--line) inset}
+  .label{font-size:12px;font-weight:700;color:var(--sub);letter-spacing:.02em;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+  .label a,.label button{color:var(--accent);text-decoration:none;font-weight:700;font-size:12px;background:none;border:0;cursor:pointer;padding:0}
+  .stale{background:var(--warn);color:#fff;border-radius:12px;padding:9px 12px;font-size:13px;margin-bottom:12px;display:none}
+
+  .hero .date{font-size:13px;color:var(--sub);font-weight:500}
+  .hero h1{font-size:21px;line-height:1.45;margin:4px 0 14px;font-weight:800;letter-spacing:-.01em}
+  .player{display:flex;align-items:center;gap:12px;background:var(--accent);color:var(--accent-ink);border-radius:14px;padding:10px 12px 10px 10px}
+  .play{width:46px;height:46px;border-radius:50%;border:0;background:var(--accent-ink);color:var(--accent);font-size:18px;cursor:pointer;flex:0 0 auto;display:grid;place-items:center}
+  .pmeta{flex:1;min-width:0}
+  .pmeta .t{font-weight:700;font-size:14.5px}
+  .pmeta .s{font-size:12px;opacity:.85}
+  .pbar{height:4px;border-radius:4px;background:rgba(255,255,255,.3);margin-top:6px;overflow:hidden}
+  .pbar i{display:block;height:100%;width:0;background:var(--accent-ink);transition:width .3s}
+  .speed{border:0;background:rgba(255,255,255,.18);color:var(--accent-ink);border-radius:10px;height:34px;padding:0 10px;font-weight:700;font-size:13px;cursor:pointer}
+  @media (prefers-color-scheme: dark){ .pbar{background:rgba(0,0,0,.25)} .speed{background:rgba(0,0,0,.18)} }
+  .alt-listen{display:flex;gap:8px;margin-top:10px}
+  .alt-listen a,.alt-listen button{flex:1;text-align:center;border:0;border-radius:10px;padding:8px;background:var(--soft);color:var(--ink);font-size:13px;font-weight:700;text-decoration:none;cursor:pointer}
+
+  .watch{display:flex;gap:12px;align-items:flex-start}
+  .watch .ic{font-size:22px;line-height:1}
+  .watch .w1{font-weight:700;font-size:15px}
+  .cd{display:inline-flex;align-items:baseline;gap:4px;margin-top:8px;background:var(--accent-soft);color:var(--accent);border-radius:10px;padding:5px 10px;font-weight:700;font-size:13px}
+  .cd .mono{font-size:15px}
+
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .tiles.two{grid-template-columns:repeat(2,1fr)}
+  .tile{background:var(--card);border-radius:14px;padding:11px 12px 9px;box-shadow:0 0 0 1px var(--line) inset;cursor:pointer;text-align:left;border:0;width:100%;min-width:0}
+  .tile .n{font-size:12px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tile .v{font-size:16px;font-weight:600;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tiles:not(.two) .tile{padding:10px 9px 8px}
+  .tiles:not(.two) .tile .v{font-size:14px;letter-spacing:-.03em}
+  .tiles.two .tile .v{font-size:19px}
+  .chg{font-size:12px;font-weight:700;display:inline-block;border-radius:6px;padding:0 6px;margin-top:3px;white-space:nowrap}
+  .chg.up{color:var(--up);background:var(--up-soft)} .chg.down{color:var(--down);background:var(--down-soft)} .chg.flat{color:var(--flat);background:var(--soft)}
+  .spark{display:block;width:100%;height:34px;margin-top:6px}
+  .note{font-size:11.5px;color:var(--sub);margin-top:8px}
+
+  .recap{border-left:4px solid var(--accent)}
+  .recap .r1{font-weight:700}
+  .recap .r2{font-size:14px;color:var(--sub);margin-top:2px}
+
+  .news details{border-top:1px solid var(--line);padding:11px 0}
+  .news details:first-of-type{border-top:0;padding-top:2px}
+  .news summary{list-style:none;cursor:pointer;display:flex;gap:10px;align-items:flex-start;font-weight:700;font-size:15px;line-height:1.45}
+  .news summary::-webkit-details-marker{display:none}
+  .news summary .no{flex:0 0 22px;height:22px;border-radius:7px;background:var(--soft);color:var(--sub);font-size:12px;display:grid;place-items:center;margin-top:1px}
+  .news summary .chev{margin-left:auto;color:var(--sub);transition:transform .2s;flex:0 0 auto}
+  .news details[open] .chev{transform:rotate(180deg)}
+  .news .body{font-size:14.5px;margin:8px 0 6px 32px}
+  .news .so{margin-left:32px;font-size:13.5px;background:var(--accent-soft);border-radius:10px;padding:8px 10px}
+  .news .so b{color:var(--accent)}
+
+  .sched .row{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+  .sched .row:first-of-type{border-top:0;padding-top:2px}
+  .sched .tm{flex:0 0 80px;font-size:13px;font-weight:600}
+  .sched .st{color:var(--warn);font-size:11px;letter-spacing:-1px}
+  .sched .tt{font-weight:700;font-size:14.5px}
+  .sched .dd{font-size:13px;color:var(--sub)}
+
   .term .w{font-size:20px;font-weight:900;margin-bottom:4px}
-  details{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:14px 0}
-  summary{font-weight:800;cursor:pointer;list-style:none}
-  summary::-webkit-details-marker{display:none}
-  summary::after{content:"＋";float:right;color:var(--sub)}
-  details[open] summary::after{content:"－"}
-  details ol{padding-left:20px;font-size:14px;margin:10px 0 4px}
-  details li{margin-bottom:6px}
-  code{font-family:"IBM Plex Mono",monospace;font-size:12px;background:var(--bg);padding:2px 6px;border-radius:6px;word-break:break-all}
-  .copy{margin-top:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:6px 10px;font:inherit;font-size:13px;cursor:pointer}
-  .archive a{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:14.5px}
-  .archive a:first-child{border-top:0}
-  .archive a.cur{color:var(--accent);font-weight:700}
-  .sources{font-size:12.5px;color:var(--sub)}
+  .term p{margin:0;font-size:14.5px}
+  .sources{font-size:12px;color:var(--sub);padding:4px 4px 0}
   .sources a{color:var(--sub)}
   .sources ul{padding-left:18px;margin:6px 0}
-  .state{text-align:center;color:var(--sub);padding:60px 0}
-  .old{background:var(--warn);color:#fff;border-radius:10px;padding:8px 12px;font-size:13.5px;margin-top:12px;display:none}
-  .old a{color:#fff;font-weight:700}
+
+  .seg{display:flex;background:var(--soft);border-radius:12px;padding:3px;margin-bottom:12px}
+  .seg button{flex:1;border:0;background:transparent;padding:7px;border-radius:9px;font-size:13px;font-weight:700;color:var(--sub);cursor:pointer}
+  .seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+
+  .arch a{display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line);color:var(--ink);text-decoration:none}
+  .arch a:first-child{border-top:0;padding-top:2px}
+  .arch .d{flex:0 0 52px;text-align:center;border-radius:12px;background:var(--soft);padding:6px 0;line-height:1.2}
+  .arch .d b{display:block;font-size:18px}
+  .arch .d span{font-size:11px;color:var(--sub)}
+  .arch .h{font-size:14.5px;font-weight:600}
+  .arch .today .d{background:var(--accent);color:var(--accent-ink)}
+  .arch .today .d span{color:var(--accent-ink);opacity:.8}
+
+  .search{width:100%;border:0;background:var(--card);box-shadow:0 0 0 1px var(--line) inset;border-radius:12px;padding:12px 14px;font:inherit;font-size:15px;color:var(--ink);margin-bottom:12px;outline:none}
+  .search:focus{box-shadow:0 0 0 2px var(--accent) inset}
+  .terms .t{padding:12px 0;border-top:1px solid var(--line)}
+  .terms .t:first-child{border-top:0;padding-top:2px}
+  .terms .tw{font-weight:800;font-size:16px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .terms .tw span{font-size:11.5px;color:var(--sub);font-weight:500;white-space:nowrap}
+  .terms .tb{font-size:14px;margin-top:3px}
+  .count{font-size:13px;color:var(--sub);margin:-4px 2px 10px}
+
+  .sheet-bg{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;z-index:30}
+  .sheet{position:fixed;left:0;right:0;bottom:0;max-height:88vh;overflow:auto;background:var(--bg);border-radius:22px 22px 0 0;padding:10px 16px calc(24px + env(safe-area-inset-bottom));z-index:31;transform:translateY(105%);transition:transform .25s ease;max-width:560px;margin:0 auto}
+  .sheet.on{transform:none}
+  .sheet .grab{width:40px;height:5px;border-radius:5px;background:var(--line);margin:4px auto 12px}
+  .sheet h3{margin:0 0 4px;font-size:19px}
+  .big{width:100%;height:180px;display:block;margin:10px 0}
+  .hist{width:100%;border-collapse:collapse;font-size:14px}
+  .hist td{padding:7px 2px;border-top:1px solid var(--line)}
+  .hist td:last-child{text-align:right}
+  .sheet ol{padding-left:20px;font-size:14px}
+  .sheet li{margin-bottom:8px}
+  code{font-family:"IBM Plex Mono",monospace;font-size:11.5px;background:var(--soft);padding:2px 6px;border-radius:6px;word-break:break-all}
+  .copy{margin-top:6px;border:0;background:var(--soft);border-radius:8px;padding:6px 10px;font-size:13px;cursor:pointer}
+
+  nav.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area-inset-bottom));z-index:20}
+  @supports (backdrop-filter:blur(1px)){ nav.tabs{background:color-mix(in srgb,var(--card) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)} }
+  nav.tabs .in{max-width:560px;margin:0 auto;display:flex}
+  nav.tabs a{flex:1;text-align:center;text-decoration:none;color:var(--sub);font-size:11px;font-weight:700;padding:4px 0}
+  nav.tabs a .i{display:block;font-size:20px;line-height:1.3;filter:grayscale(1);opacity:.55}
+  nav.tabs a.on{color:var(--accent)}
+  nav.tabs a.on .i{filter:none;opacity:1}
+  .empty{color:var(--sub);text-align:center;padding:40px 0;font-size:14px}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="top">
-    <div class="kicker">Morning Macro Briefing</div>
-    <button class="icon-btn" id="refresh" aria-label="새로고침">↻</button>
-  </div>
-  <h1>모닝 브리핑</h1>
-  <div class="date" id="date">불러오는 중…</div>
-  <div class="old" id="old"></div>
-  <div class="headline" id="headline"></div>
-
-  <div class="listen">
-    <div class="lt">알람 끄면 자동으로 들리지만, 여기서도 바로 들을 수 있어</div>
-    <div id="aiBox" style="display:none">
-      <button class="siri" id="aiPlay">🎙️ AI 성우로 듣기</button>
-      <audio id="aiAudio" preload="none"></audio>
-      <div class="bar"><i id="aiProg"></i></div>
+  <header class="top">
+    <div class="brand">Morning Macro<b id="title">모닝 브리핑</b></div>
+    <div style="display:flex;gap:8px">
+      <button class="icon-btn" id="refresh" aria-label="새로고침">↻</button>
+      <button class="icon-btn" id="openSetup" aria-label="알람 연동 설정">⚙️</button>
     </div>
-    <a class="siri" id="siri" href="shortcuts://run-shortcut?name=%EB%AA%A8%EB%8B%9D%EB%B8%8C%EB%A6%AC%ED%95%91">🎧 시리로 듣기</a>
-    <div class="alt">
-      <button id="tts">▶ 앱에서 듣기</button>
-      <select id="rate" aria-label="속도">
-        <option value="0.9">0.9x</option><option value="1" selected>1.0x</option>
-        <option value="1.2">1.2x</option><option value="1.4">1.4x</option>
-      </select>
+  </header>
+
+  <section class="view" id="v-today">
+    <div class="stale" id="stale"></div>
+    <div class="card hero">
+      <div class="date" id="date">불러오는 중…</div>
+      <h1 id="headline"></h1>
+      <div class="player">
+        <button class="play" id="play" aria-label="재생">▶</button>
+        <div class="pmeta">
+          <div class="t" id="pTitle">오늘 브리핑 듣기</div>
+          <div class="s" id="pSub">AI 성우 · 약 3분</div>
+          <div class="pbar"><i id="pBar"></i></div>
+        </div>
+        <button class="speed" id="speed">1.0x</button>
+      </div>
+      <div class="alt-listen">
+        <a href="shortcuts://run-shortcut?name=%EB%AA%A8%EB%8B%9D%EB%B8%8C%EB%A6%AC%ED%95%91">🎧 시리 단축어로</a>
+        <button id="tts">🗣️ 기기 음성으로</button>
+      </div>
+      <audio id="audio" preload="none"></audio>
     </div>
-    <div class="now" id="now"></div>
-  </div>
-
-  <div id="content"><div class="state">브리핑을 불러오는 중이야…</div></div>
-
-  <details id="setup">
-    <summary>⚙️ 알람 연동 설정 방법</summary>
-    <ol>
-      <li><b>시리 단축어 만들기:</b> 단축어 앱 → 단축어 탭 → <b>+</b> → 이름을 <b>모닝브리핑</b>으로 지정</li>
-      <li>동작 추가: <b>URL의 콘텐츠 가져오기</b> → URL에 아래 주소 붙여넣기<br><code id="rawUrl"></code><br><button class="copy" id="copyUrl">주소 복사</button></li>
-      <li>동작 추가: <b>텍스트 말하기</b> (언어 한국어, 음성은 시리)</li>
-      <li><b>알람 연동:</b> 자동화 탭 → <b>+</b> → 알람 → <b>중단됨</b> → 즉시 실행 → 동작에서 <b>단축어 실행 → 모닝브리핑</b> 선택</li>
-      <li>이 앱을 홈 화면에: 사파리 공유 버튼 → <b>홈 화면에 추가</b></li>
-    </ol>
-  </details>
-
-  <section class="archive">
-    <h2>📚 지난 브리핑</h2>
-    <div id="archive"><div class="note">아직 기록이 없어.</div></div>
+    <div id="todayBody"></div>
   </section>
 
-  <div class="sources" id="sources"></div>
+  <section class="view" id="v-markets">
+    <div class="seg" id="rangeSeg"><button data-r="7" class="on">1주</button><button data-r="14">2주</button><button data-r="30">1달</button></div>
+    <div class="tiles two" id="mkGrid"><div class="empty">지표를 불러오는 중…</div></div>
+    <div class="note" style="padding:0 4px">숫자 옆 색은 하루 변동, 그래프 색은 선택한 기간 전체 흐름이야. 카드를 누르면 날짜별 숫자를 볼 수 있어.</div>
+  </section>
+
+  <section class="view" id="v-archive">
+    <div class="card arch" id="archList"><div class="empty">기록을 불러오는 중…</div></div>
+  </section>
+
+  <section class="view" id="v-terms">
+    <input class="search" id="q" type="search" placeholder="용어 검색 (예: CPI, 금리)">
+    <div class="count" id="tCount"></div>
+    <div class="card terms" id="termList"><div class="empty">용어를 모으는 중…</div></div>
+  </section>
 </div>
+
+<nav class="tabs"><div class="in">
+  <a href="#today" data-v="today"><span class="i">☀️</span>오늘</a>
+  <a href="#markets" data-v="markets"><span class="i">📈</span>지표</a>
+  <a href="#archive" data-v="archive"><span class="i">🗂️</span>기록</a>
+  <a href="#terms" data-v="terms"><span class="i">📖</span>용어</a>
+</div></nav>
+
+<div class="sheet-bg" id="sheetBg"></div>
+<div class="sheet" id="sheet"><div class="grab"></div><div id="sheetBody"></div></div>
 
 <script>
 const $ = s => document.querySelector(s);
-const params = new URLSearchParams(location.search);
-const wanted = params.get('date');
-const base = location.href.split('?')[0].replace(/[^/]*$/, '');
-const RAW = 'https://raw.githubusercontent.com/mdj47091-sudo/morning-briefing/main/briefing.txt';
-$('#rawUrl').textContent = RAW;
-$('#copyUrl').onclick = async () => { try { await navigator.clipboard.writeText(RAW); $('#copyUrl').textContent = '복사했어!'; } catch(e){ $('#copyUrl').textContent = '길게 눌러서 복사해줘'; } };
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const noCache = p => fetch(p + (p.includes('?') ? '&' : '?') + 't=' + Date.now(), {cache:'no-store'});
+const RAW_TXT = 'https://raw.githubusercontent.com/mdj47091-sudo/morning-briefing/main/briefing.txt';
+const MP3 = 'https://mdj47091-sudo.github.io/morning-briefing/briefing.mp3';
+const kstNow = () => new Date(Date.now() + 9*3600e3);
+const todayKST = () => kstNow().toISOString().slice(0,10);
+const WEEK = ['일','월','화','수','목','금','토'];
+let today = null, scriptText = '', archiveIndex = [], archiveCache = {}, archiveLoaded = null;
+
+const normLabel = l => String(l).replace(/\s*\(.*?\)\s*/g,'').trim();
+const num = v => { const m = String(v).replace(/,/g,'').match(/-?\d+(\.\d+)?/); return m ? parseFloat(m[0]) : null; };
+const dirOf = c => /^\+/.test(c) ? 'up' : /^[-−]/.test(c) ? 'down' : 'flat';
+const arrow = d => d === 'up' ? '▲' : d === 'down' ? '▼' : '';
+
+function sparkSVG(vals, w=120, h=34, big=false){
+  const pts = (vals || []).filter(v => v != null);
+  if (pts.length < 2) return big ? '' : `<svg class="spark" viewBox="0 0 ${w} ${h}"></svg>`;
+  const min = Math.min(...pts), max = Math.max(...pts), pad = big ? 12 : 3, rng = (max - min) || 1;
+  const xs = i => pad + i * (w - pad*2) / (vals.length - 1);
+  const ys = v => h - pad - (v - min) / rng * (h - pad*2);
+  let d = '', first = null, last = null;
+  vals.forEach((v,i) => { if (v == null) return; d += (d ? ' L' : 'M') + xs(i).toFixed(1) + ',' + ys(v).toFixed(1); if (first == null) first = xs(i); last = [xs(i), ys(v)]; });
+  const area = d + ` L${last[0].toFixed(1)},${h-pad} L${first.toFixed(1)},${h-pad} Z`;
+  const col = pts[pts.length-1] >= pts[0] ? 'var(--up)' : 'var(--down)';
+  const id = 'g' + Math.random().toString(36).slice(2,8);
+  return `<svg class="${big?'big':'spark'}" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true">
+    <defs><linearGradient id="${id}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${col}" stop-opacity=".22"/><stop offset="1" stop-color="${col}" stop-opacity="0"/></linearGradient></defs>
+    <path d="${area}" fill="url(#${id})"/><path d="${d}" fill="none" stroke="${col}" stroke-width="${big?2.2:1.6}" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>`;
+}
+
+function show(v){
+  if (!['today','markets','archive','terms'].includes(v)) v = 'today';
+  $$('.view').forEach(x => x.classList.toggle('on', x.id === 'v-' + v));
+  $$('nav.tabs a').forEach(a => a.classList.toggle('on', a.dataset.v === v));
+  $('#title').textContent = {today:'모닝 브리핑', markets:'지표 흐름', archive:'지난 브리핑', terms:'경제 용어 사전'}[v];
+  window.scrollTo(0,0);
+  if (v === 'markets') renderMarkets();
+  if (v === 'archive') loadArchive().then(renderArchive);
+  if (v === 'terms') renderTerms();
+}
+window.addEventListener('hashchange', () => show(location.hash.slice(1)));
 $('#refresh').onclick = () => location.reload();
 
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fetchNoCache = (p) => fetch(p + (p.includes('?') ? '&' : '?') + 't=' + Date.now(), {cache:'no-store'});
-let scriptText = '';
+function openSheet(html){ $('#sheetBody').innerHTML = html; $('#sheet').scrollTop = 0; $('#sheetBg').style.display = 'block'; requestAnimationFrame(() => $('#sheet').classList.add('on')); }
+function closeSheet(){ $('#sheet').classList.remove('on'); setTimeout(() => $('#sheetBg').style.display = 'none', 220); }
+$('#sheetBg').onclick = closeSheet;
 
-function todayKST(){
-  const d = new Date(Date.now() + 9*3600e3);
-  return d.toISOString().slice(0,10);
+function tileHTML(m, series){
+  const d = m.dir || dirOf(m.change);
+  return `<button class="tile" data-k="${esc(normLabel(m.label))}"><div class="n">${esc(m.label)}</div>
+    <div class="v mono">${esc(m.value)}</div><span class="chg ${d}">${arrow(d)} ${esc(m.change)}</span>${series !== undefined ? sparkSVG(series) : ''}</button>`;
 }
 
-function render(b){
-  $('#date').textContent = b.dateLabel || b.date;
-  $('#headline').textContent = b.headline || '';
-  if (!wanted && b.date && b.date !== todayKST()) {
-    const o = $('#old'); o.style.display = 'block';
-    o.innerHTML = '아직 오늘 브리핑이 안 올라왔어. 이건 ' + esc(b.dateLabel || b.date) + ' 브리핑이야. 잠시 후 ↻ 눌러줘.';
-  }
-  if (wanted) {
-    const o = $('#old'); o.style.display = 'block';
-    o.innerHTML = '지난 브리핑을 보고 있어. <a href="./">오늘 브리핑으로 →</a>';
-    $('#siri').style.display = 'none';
-  }
-  const dirArrow = d => d === 'up' ? '▲' : d === 'down' ? '▼' : '';
+function briefingHTML(b, opts={}){
   let h = '';
-  if (b.alert) h += `<div class="alert">⏰ <div><b>${esc(b.alert)}</b></div></div>`;
+  if (b.recap && (b.recap.title || b.recap.body))
+    h += `<div class="card recap"><div class="label">어제 예고 → 결과</div><div class="r1">${esc(b.recap.title||'')}</div><div class="r2">${esc(b.recap.body||'')}</div></div>`;
+  if (b.alert)
+    h += `<div class="card"><div class="label">오늘 꼭 볼 것</div><div class="watch"><div class="ic">⏰</div><div><div class="w1">${esc(b.alert)}</div>${opts.countdown ? '<div class="cd" id="cd" hidden></div>' : ''}</div></div></div>`;
   if (b.market?.length) {
-    h += `<section><h2><span class="num">01</span>밤사이 시장</h2><div class="grid">` +
-      b.market.map(m => `<div class="tile"><div class="lbl">${esc(m.label)}</div><div class="val">${esc(m.value)}</div><div class="chg ${esc(m.dir||'flat')}">${dirArrow(m.dir)} ${esc(m.change)}</div></div>`).join('') +
-      `</div>${b.marketNote ? `<div class="note">${esc(b.marketNote)}</div>` : ''}</section>`;
+    let list = b.market;
+    if (!opts.full) {
+      const pri = ['나스닥','코스피','원·달러','10년물','S&P','다우'], picked = [];
+      pri.forEach(p => { const m = b.market.find(x => normLabel(x.label).includes(p)); if (m && !picked.includes(m) && picked.length < 3) picked.push(m); });
+      list = picked;
+    }
+    h += `<div class="card"><div class="label">밤사이 시장 ${opts.full ? '' : '<a href="#markets">전체 지표 →</a>'}</div>
+      <div class="tiles${opts.full ? ' two' : ''}">${list.map(m => tileHTML(m, opts.series ? opts.series(normLabel(m.label)) : undefined)).join('')}</div>
+      ${b.marketNote ? `<div class="note">${esc(b.marketNote)}</div>` : ''}</div>`;
   }
-  if (b.news?.length) {
-    h += `<section><h2><span class="num">02</span>핵심 뉴스</h2><ul class="news">` +
-      b.news.map((n,i) => `<li><div class="t">${'①②③④⑤⑥⑦'[i]||''} ${esc(n.title)}</div><div class="d">${esc(n.body)}</div>${n.sowhat ? `<div class="so"><b>그래서?</b> ${esc(n.sowhat)}</div>` : ''}</li>`).join('') +
-      `</ul></section>`;
+  if (b.news?.length)
+    h += `<div class="card news"><div class="label">핵심 뉴스 <span style="font-weight:500">눌러서 펼치기</span></div>` +
+      b.news.map((n,i) => `<details><summary><span class="no mono">${i+1}</span><span>${esc(n.title)}</span><span class="chev">⌄</span></summary>
+        <div class="body">${esc(n.body)}</div>${n.sowhat ? `<div class="so"><b>그래서?</b> ${esc(n.sowhat)}</div>` : ''}</details>`).join('') + `</div>`;
+  if (b.schedule?.length)
+    h += `<div class="card sched"><div class="label">일정 (한국 시간)</div>` +
+      b.schedule.map(s => `<div class="row"><div class="tm mono">${esc(s.time)}<div class="st">${'★'.repeat(s.stars||1)}</div></div><div><div class="tt">${esc(s.title)}</div>${s.detail ? `<div class="dd">${esc(s.detail)}</div>` : ''}</div></div>`).join('') +
+      (b.scheduleNote ? `<div class="note">${esc(b.scheduleNote)}</div>` : '') + `</div>`;
+  if (b.term) h += `<div class="card term"><div class="label">오늘의 경제 용어 ${opts.full ? '' : '<a href="#terms">용어 사전 →</a>'}</div><div class="w">${esc(b.term.word)}</div><p>${esc(b.term.body)}</p></div>`;
+  if (b.sources?.length && !opts.full) h += `<div class="sources"><b>출처</b><ul>${b.sources.map(s => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a></li>`).join('')}</ul>AI(Claude)가 뉴스를 검색·요약해 만든 브리핑이며 투자 권유가 아니야.</div>`;
+  return h;
+}
+const bindTiles = root => root.querySelectorAll('.tile').forEach(t => t.onclick = () => openMetric(t.dataset.k));
+
+let cdTimer = null;
+function startCountdown(b){
+  clearInterval(cdTimer);
+  const el = $('#cd'); if (!el || b.date !== todayKST()) return;
+  const now = kstNow(); let target = null, title = '';
+  for (const s of (b.schedule || [])) {
+    const m = String(s.time).match(/(오늘|내일)\s*(\d{1,2}):(\d{2})/); if (!m) continue;
+    const t = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + (m[1] === '내일' ? 1 : 0), +m[2], +m[3]));
+    if (t > now) { target = t; title = s.title; break; }
   }
-  if (b.schedule?.length) {
-    h += `<section><h2><span class="num">03</span>오늘 일정 <span style="font-size:13px;color:var(--sub);font-weight:500">(한국 시간)</span></h2><table>` +
-      b.schedule.map(s => `<tr><td class="time">${esc(s.time)}</td><td><span class="star">${'★'.repeat(s.stars||1)}</span> <b>${esc(s.title)}</b>${s.detail ? `<span class="det">${esc(s.detail)}</span>` : ''}</td></tr>`).join('') +
-      `</table>${b.scheduleNote ? `<div class="note">${esc(b.scheduleNote)}</div>` : ''}</section>`;
-  }
-  if (b.term) h += `<section class="term"><h2><span class="num">04</span>오늘의 경제 용어</h2><div class="w">${esc(b.term.word)}</div>${esc(b.term.body)}</section>`;
-  $('#content').innerHTML = h;
-  if (b.sources?.length) {
-    $('#sources').innerHTML = '<b>출처</b><ul>' + b.sources.map(s => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a></li>`).join('') + '</ul>AI(Claude)가 뉴스를 검색·요약해 만든 브리핑이며 투자 권유가 아니야.';
-  }
+  if (!target) return;
+  const short = title.length > 18 ? title.slice(0,18) + '…' : title;
+  const tick = () => {
+    const diff = target - kstNow();
+    if (diff <= 0) { el.textContent = title + ' 발표 시간이야'; return clearInterval(cdTimer); }
+    el.innerHTML = `${esc(short)}까지 <span class="mono">${Math.floor(diff/3600e3)}시간 ${Math.floor(diff%3600e3/60e3)}분</span>`;
+  };
+  el.hidden = false; tick(); cdTimer = setInterval(tick, 30e3);
+}
+function drawToday(){
+  $('#todayBody').innerHTML = briefingHTML(today, {countdown:true, series: k => seriesFor(k, 7)});
+  bindTiles($('#todayBody')); startCountdown(today);
 }
 
-async function load(){
+async function loadToday(){
   try {
-    const jsonPath = wanted ? `archive/${wanted}.json` : 'briefing.json';
-    const r = await fetchNoCache(jsonPath);
-    if (!r.ok) throw new Error(r.status);
-    const b = await r.json();
-    render(b);
-    if (wanted) {
-      scriptText = b.script || '';
-    } else {
-      const t = await fetchNoCache('briefing.txt');
-      scriptText = t.ok ? await t.text() : (b.script || '');
-    }
-    if (!wanted) setupAudio(b.date);
-  } catch(e) {
-    $('#content').innerHTML = '<div class="state">브리핑을 못 불러왔어. 인터넷 연결 확인하고 ↻ 눌러줘.</div>';
-  }
+    const r = await noCache('briefing.json'); if (!r.ok) throw 0;
+    today = await r.json();
+    $('#date').textContent = today.dateLabel || today.date;
+    $('#headline').textContent = today.headline || '';
+    if (today.date !== todayKST()) { const s = $('#stale'); s.style.display = 'block'; s.textContent = '아직 오늘 브리핑이 안 올라왔어. 이건 ' + (today.dateLabel || today.date) + ' 브리핑이야. 잠시 후 ↻ 눌러줘.'; }
+    drawToday();
+    noCache('briefing.txt').then(t => t.ok ? t.text() : '').then(t => scriptText = t).catch(()=>{});
+    setupAudio();
+    await loadArchive(); drawToday();
+    if (location.hash === '#markets') renderMarkets();
+  } catch(e) { $('#todayBody').innerHTML = '<div class="empty">브리핑을 못 불러왔어. 인터넷 연결 확인하고 ↻ 눌러줘.</div>'; }
+}
+
+const audio = $('#audio'), speeds = [1, 1.2, 1.4, 0.9];
+let speedIdx = 0, hasMp3 = false;
+try { speedIdx = Math.max(0, speeds.indexOf(parseFloat(localStorage.getItem('speed')))); } catch(e){}
+const applySpeed = () => { $('#speed').textContent = speeds[speedIdx].toFixed(1) + 'x'; audio.playbackRate = speeds[speedIdx]; };
+applySpeed();
+$('#speed').onclick = () => { speedIdx = (speedIdx + 1) % speeds.length; applySpeed(); try { localStorage.setItem('speed', speeds[speedIdx]); } catch(e){} };
+const fmt = s => Math.floor(s/60) + ':' + String(Math.floor(s%60)).padStart(2,'0');
+async function setupAudio(){
   try {
-    const r = await fetchNoCache('archive/index.json');
-    if (r.ok) {
-      const list = await r.json();
-      if (list.length) $('#archive').innerHTML = list.slice(0, 30).map(x =>
-        `<a href="?date=${esc(x.date)}" class="${x.date === wanted ? 'cur' : ''}"><span>${esc(x.dateLabel || x.date)}</span><span style="color:var(--sub);font-size:13px;max-width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(x.title || '')}</span></a>`).join('');
-    }
+    const r = await noCache('audio.json'); if (!r.ok) throw 0;
+    const a = await r.json();
+    if (a.date && today && a.date === today.date) { hasMp3 = true; audio.src = 'briefing.mp3?d=' + encodeURIComponent(a.generatedAt || a.date); $('#pSub').textContent = 'AI 성우 현수 · 약 3분'; return; }
   } catch(e) {}
+  $('#pSub').textContent = '음성 준비 중 · 지금은 기기 음성으로 읽어줄게';
 }
-load();
+$('#play').onclick = () => {
+  if (!hasMp3) return $('#tts').click();
+  if (audio.paused) { stopTTS(); applySpeed(); audio.play().catch(() => { $('#pSub').textContent = '재생을 못 했어. 다시 눌러줘.'; }); }
+  else audio.pause();
+};
+audio.onplay = () => { $('#play').textContent = '❚❚'; $('#pTitle').textContent = '듣는 중'; };
+audio.onpause = () => { $('#play').textContent = '▶'; $('#pTitle').textContent = '이어 듣기'; };
+audio.onended = () => { $('#play').textContent = '↺'; $('#pTitle').textContent = '다 들었어! 좋은 하루 보내'; };
+audio.ontimeupdate = () => { if (!audio.duration) return; $('#pBar').style.width = (audio.currentTime / audio.duration * 100) + '%'; $('#pSub').textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration); };
 
-/* in-app speech (fallback when Siri shortcut isn't set up) */
 const synth = window.speechSynthesis;
-let chunks = [], idx = 0, state = 'idle', timer = null, voice = null;
+let chunks = [], ci = 0, ttsOn = false, voice = null;
 function pickVoice(){ if (!synth) return; const ko = synth.getVoices().filter(v => v.lang && v.lang.toLowerCase().startsWith('ko')); voice = ko.find(v => /premium|enhanced|yuna|siri/i.test(v.name)) || ko[0] || null; }
 if (synth) { pickVoice(); synth.onvoiceschanged = pickVoice; }
-try { const r = localStorage.getItem('rate'); if (r) $('#rate').value = r; } catch(e){}
-$('#rate').onchange = () => { try { localStorage.setItem('rate', $('#rate').value); } catch(e){} };
-
-function split(text){
-  return text.split(/\n+/).flatMap(p => p.match(/[^.!?]+[.!?]?/g) || []).map(s => s.trim()).filter(Boolean);
-}
-function speakNext(){
-  if (state !== 'playing') return;
-  if (idx >= chunks.length) { state = 'idle'; $('#tts').textContent = '▶ 다시 듣기'; $('#now').textContent = '브리핑 끝! 좋은 하루 보내.'; return; }
-  const u = new SpeechSynthesisUtterance(chunks[idx]);
-  u.lang = 'ko-KR'; u.rate = parseFloat($('#rate').value) * 0.95; if (voice) u.voice = voice;
-  u.onend = () => { if (state !== 'playing') return; idx++; timer = setTimeout(speakNext, 300); };
-  $('#now').textContent = `${idx+1} / ${chunks.length}`;
-  synth.speak(u);
+function stopTTS(){ if (ttsOn) { ttsOn = false; synth && synth.cancel(); $('#tts').textContent = '🗣️ 기기 음성으로'; } }
+function nextTTS(){
+  if (!ttsOn) return; if (ci >= chunks.length) return stopTTS();
+  const u = new SpeechSynthesisUtterance(chunks[ci]); u.lang = 'ko-KR'; u.rate = speeds[speedIdx] * 0.95; if (voice) u.voice = voice;
+  u.onend = () => { ci++; setTimeout(nextTTS, 250); }; synth.speak(u);
 }
 $('#tts').onclick = () => {
-  if (!synth) { $('#now').textContent = '이 브라우저는 음성 읽기를 지원하지 않아.'; return; }
-  if (!scriptText) { $('#now').textContent = '아직 대본을 불러오는 중이야.'; return; }
-  if (state === 'playing') { state = 'paused'; synth.cancel(); clearTimeout(timer); $('#tts').textContent = '▶ 이어 듣기'; return; }
-  if (state === 'idle') { chunks = split(scriptText); idx = 0; }
-  state = 'playing'; $('#tts').textContent = '❚❚ 일시정지'; speakNext();
+  if (!synth || !scriptText) return; if (ttsOn) return stopTTS();
+  audio.pause();
+  chunks = scriptText.split(/\n+/).flatMap(p => p.match(/[^.!?]+[.!?]?/g) || []).map(s => s.trim()).filter(Boolean);
+  ci = 0; ttsOn = true; $('#tts').textContent = '■ 그만 듣기'; nextTTS();
 };
 
-/* AI voice MP3 (Google TTS via GitHub Actions) */
-async function setupAudio(date){
-  try {
-    const r = await fetchNoCache('audio.json');
-    if (!r.ok) return;
-    const a = await r.json();
-    if (!a.date || a.date !== date) return;
-    const audio = $('#aiAudio');
-    audio.src = 'briefing.mp3?d=' + encodeURIComponent(a.generatedAt || a.date);
-    $('#aiBox').style.display = 'block'; $('#aiBox').classList.add('on');
-    const names = {'ko-KR-SunHiNeural':'선히 (여)','ko-KR-InJoonNeural':'인준 (남)','ko-KR-HyunsuMultilingualNeural':'현수 (남)'};
-    if (a.samples && a.samples.length) {
-      const box = document.createElement('div'); box.className = 'samples';
-      box.innerHTML = '<span>목소리 비교:</span>' + [{voice:a.voice, file:'briefing.mp3'}].concat(a.samples.filter(s => s.voice !== a.voice))
-        .map((s,i) => `<button data-src="${esc(s.file)}" class="${i===0?'sel':''}">${esc(names[s.voice] || s.voice)}</button>`).join('');
-      $('#aiBox').appendChild(box);
-      box.querySelectorAll('button').forEach(btn => btn.onclick = () => {
-        box.querySelectorAll('button').forEach(x => x.classList.remove('sel')); btn.classList.add('sel');
-        audio.src = btn.dataset.src + '?d=' + encodeURIComponent(a.generatedAt || a.date);
-        audio.playbackRate = parseFloat($('#rate').value);
-        audio.play().catch(()=>{});
-      });
-    }
-    audio.playbackRate = parseFloat($('#rate').value);
-    $('#rate').addEventListener('change', () => { audio.playbackRate = parseFloat($('#rate').value); });
-    $('#aiPlay').onclick = () => {
-      if (state === 'playing') { state = 'paused'; synth && synth.cancel(); $('#tts').textContent = '▶ 이어 듣기'; }
-      if (audio.paused) { audio.play().catch(() => { $('#now').textContent = '재생을 시작하지 못했어. 다시 눌러줘.'; }); }
-      else audio.pause();
-    };
-    audio.onplay = () => { $('#aiPlay').textContent = '❚❚ 일시정지'; };
-    audio.onpause = () => { $('#aiPlay').textContent = '🎙️ 이어 듣기'; };
-    audio.onended = () => { $('#aiPlay').textContent = '🎙️ 다시 듣기'; $('#now').textContent = '브리핑 끝! 좋은 하루 보내.'; };
-    audio.ontimeupdate = () => {
-      if (!audio.duration) return;
-      $('#aiProg').style.width = (audio.currentTime / audio.duration * 100) + '%';
-      const f = s => Math.floor(s/60) + ':' + String(Math.floor(s%60)).padStart(2,'0');
-      $('#now').textContent = f(audio.currentTime) + ' / ' + f(audio.duration);
-    };
-  } catch(e) {}
+function loadArchive(){
+  if (archiveLoaded) return archiveLoaded;
+  archiveLoaded = (async () => {
+    try {
+      const r = await noCache('archive/index.json'); if (!r.ok) return;
+      archiveIndex = await r.json();
+      await Promise.all(archiveIndex.slice(0, 31).map(async x => { try { const rr = await fetch('archive/' + x.date + '.json'); if (rr.ok) archiveCache[x.date] = await rr.json(); } catch(e){} }));
+    } catch(e) {}
+  })();
+  return archiveLoaded;
+}
+const datesAsc = n => Object.keys(archiveCache).sort().slice(-n);
+function seriesFor(key, n){
+  const ds = datesAsc(n); if (ds.length < 2) return undefined;
+  return ds.map(d => { const m = (archiveCache[d].market || []).find(x => normLabel(x.label) === key); return m ? num(m.value) : null; });
 }
 
+let range = 7;
+$$('#rangeSeg button').forEach(b => b.onclick = () => { $$('#rangeSeg button').forEach(x => x.classList.remove('on')); b.classList.add('on'); range = +b.dataset.r; renderMarkets(); });
+async function renderMarkets(){
+  await loadArchive(); if (!today) return;
+  $('#mkGrid').innerHTML = (today.market || []).map(m => tileHTML(m, seriesFor(normLabel(m.label), range) || null)).join('');
+  bindTiles($('#mkGrid'));
+}
+function openMetric(key){
+  const rows = datesAsc(30).map(d => { const m = (archiveCache[d].market || []).find(x => normLabel(x.label) === key); return m ? {d, m} : null; }).filter(Boolean);
+  if (!rows.length && today) { const m = today.market.find(x => normLabel(x.label) === key); if (m) rows.push({d: today.date, m}); }
+  const vals = rows.map(r => num(r.m.value)), lastM = rows.length ? rows[rows.length-1].m : null;
+  const f = vals.find(v => v != null), l = vals[vals.length-1];
+  const ch = f != null && l != null && f !== 0 && rows.length > 1 ? (l - f) / f * 100 : null;
+  const d = ch == null ? 'flat' : ch >= 0 ? 'up' : 'down';
+  openSheet(`<h3>${esc(key)}</h3><div class="mono" style="font-size:26px;font-weight:600">${esc(lastM ? lastM.value : '-')}</div>
+    ${ch != null ? `<span class="chg ${d}">${arrow(d)} ${ch >= 0 ? '+' : ''}${ch.toFixed(2)}% · 최근 ${rows.length}일</span>` : ''}
+    ${sparkSVG(vals, 320, 180, true)}
+    <table class="hist">${rows.slice().reverse().map(r => { const dd = r.m.dir || dirOf(r.m.change); return `<tr><td>${esc(r.d.slice(5).replace('-','/'))}</td><td class="mono">${esc(r.m.value)}</td><td><span class="chg ${dd}">${arrow(dd)} ${esc(r.m.change)}</span></td></tr>`; }).join('')}</table>
+    <div class="note">매일 아침 브리핑에 기록된 값이야. 장이 쉬는 날은 전날 값이 이어질 수 있어.</div>`);
+}
+
+function renderArchive(){
+  if (!archiveIndex.length) { $('#archList').innerHTML = '<div class="empty">아직 기록이 없어.</div>'; return; }
+  $('#archList').innerHTML = archiveIndex.map(x => {
+    const dt = new Date(x.date + 'T00:00:00Z');
+    return `<a href="#archive" data-d="${esc(x.date)}" class="${x.date === todayKST() ? 'today' : ''}"><div class="d"><b class="mono">${dt.getUTCDate()}</b><span>${dt.getUTCMonth()+1}월 ${WEEK[dt.getUTCDay()]}</span></div><div class="h">${esc(x.title || x.dateLabel)}</div></a>`;
+  }).join('');
+  $$('#archList a').forEach(a => a.onclick = e => { e.preventDefault(); openDay(a.dataset.d); });
+}
+function openDay(d){
+  const b = archiveCache[d]; if (!b) return;
+  openSheet(`<div style="color:var(--sub);font-size:13px">${esc(b.dateLabel || b.date)}</div><h3 style="margin-bottom:12px">${esc(b.headline || '')}</h3>` + briefingHTML(b, {full:true}) +
+    (b.script ? `<div class="card"><div class="label">그날 대본</div><div style="font-size:14px;white-space:pre-wrap">${esc(b.script)}</div></div>` : ''));
+  bindTiles($('#sheetBody'));
+}
+
+async function renderTerms(){
+  await loadArchive();
+  const seen = new Map();
+  Object.keys(archiveCache).sort().reverse().forEach(d => { const t = archiveCache[d].term; if (t && t.word && !seen.has(t.word)) seen.set(t.word, {...t, date: d}); });
+  const all = [...seen.values()];
+  const draw = () => {
+    const q = $('#q').value.trim().toLowerCase();
+    const list = q ? all.filter(t => (t.word + ' ' + t.body).toLowerCase().includes(q)) : all;
+    $('#tCount').textContent = q ? `${list.length}개 찾았어` : `지금까지 모은 용어 ${all.length}개`;
+    $('#termList').innerHTML = list.length ? list.map(t => `<div class="t"><div class="tw">${esc(t.word)}<span>${esc(t.date.slice(5).replace('-','/'))} 브리핑</span></div><div class="tb">${esc(t.body)}</div></div>`).join('') : '<div class="empty">찾는 용어가 없어.</div>';
+  };
+  $('#q').oninput = draw; draw();
+}
+
+$('#openSetup').onclick = () => openSheet(`<h3>⚙️ 알람 연동 설정</h3><ol>
+  <li><b>단축어 만들기:</b> 단축어 앱 → + → 이름을 <b>모닝브리핑</b>으로</li>
+  <li><b>URL의 콘텐츠 가져오기</b>에 아래 주소<br><code>${esc(MP3)}</code><br><button class="copy" id="copyMp3">주소 복사</button></li>
+  <li><b>사운드 재생</b> 동작 추가 (입력: URL의 콘텐츠)</li>
+  <li><b>알람 연동:</b> 자동화 → 알람 → 중단됨 → 즉시 실행 → <b>단축어 실행 → 모닝브리핑</b></li>
+  <li><b>홈 화면에 추가:</b> 사파리 공유 버튼 → 홈 화면에 추가</li></ol>
+  <div class="note">음성 파일 대신 대본을 시리로 읽게 하려면 '텍스트 말하기'에 이 주소를 써:<br><code>${esc(RAW_TXT)}</code></div>`);
+document.addEventListener('click', async e => { if (e.target.id === 'copyMp3') { try { await navigator.clipboard.writeText(MP3); e.target.textContent = '복사했어!'; } catch(_) { e.target.textContent = '길게 눌러서 복사해줘'; } } });
+
+show(location.hash.slice(1) || 'today');
+loadToday();
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 </body>
