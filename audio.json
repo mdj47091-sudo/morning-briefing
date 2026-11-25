@@ -1,8 +1,8 @@
 {
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "engine": "edge",
   "voice": "ko-KR-HyunsuMultilingualNeural",
-  "bytes": 1125216,
+  "bytes": 1249488,
   "samples": [],
-  "generatedAt": "2026-11-24T23:35:41+00:00"
+  "generatedAt": "2026-11-25T23:36:13+00:00"
 }
