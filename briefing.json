@@ -1,185 +1,159 @@
 {
-  "date": "2026-11-27",
-  "dateLabel": "11월 27일 (금)",
-  "headline": "한은이 기준금리를 3.25%로 올리고 추가 인상까지 시사했어. 뉴욕은 추수감사절로 쉬었고 중동 긴장에 유가는 사흘째 올랐어.",
+  "date": "2026-11-28",
+  "dateLabel": "11월 28일 (토)",
+  "headline": "블프 반나절 장에서 나스닥이 2% 넘게 뛰며 다우는 2022년 이후 최고의 한 주를 보냈어. 다음 주는 금요일 밤 미국 고용보고서가 핵심이야.",
   "recap": {
-    "title": "어제 짚은 한은 금통위, 예상대로 3.25%로 인상했어",
-    "body": "기준금리를 3.00%에서 3.25%로 올렸고 5대 2 결정이었어. 점도표 21개 중 15개가 현 금리보다 높아 국고채 금리는 단기물 중심으로 올랐고 코스피는 0.29% 오르는 데 그쳤어."
+    "title": "어제 짚은 삼성전자 배당·블프 조기폐장, 배당은 역대 최대였고 뉴욕은 급등했어",
+    "body": "삼성전자는 주당 4,601원, 총 30조 원 규모의 역대 최대 분기 배당을 지급했어. 블랙프라이데이 조기폐장 장에서는 S&P 500이 1.60%, 나스닥이 2.31% 올랐어."
   },
-  "alert": "오늘 삼성전자 배당금 지급일이라 외국인 배당 송금이 환율을 밀어올릴지 봐야 해. 뉴욕증시는 블랙프라이데이 조기 폐장이야.",
+  "alert": "내일(29일) 오펙플러스 회의 결과와 다음 주 금요일 밤 미국 11월 고용보고서를 챙겨 봐.",
   "market": [
     {
-      "label": "코스피 (26일)",
-      "value": "4,711.21",
-      "change": "+0.29%",
+      "label": "S&P 500",
+      "value": "7,297.49",
+      "change": "+1.60%",
       "dir": "up"
     },
     {
-      "label": "코스닥 (26일)",
-      "value": "655.71",
-      "change": "+0.78%",
+      "label": "나스닥",
+      "value": "24,129.50",
+      "change": "+2.31%",
       "dir": "up"
     },
     {
-      "label": "원·달러 (26일)",
-      "value": "1,342.7원",
-      "change": "-0.5원",
+      "label": "다우",
+      "value": "50,774.94",
+      "change": "+1.18%",
+      "dir": "up"
+    },
+    {
+      "label": "WTI",
+      "value": "$83.08",
+      "change": "-0.7%",
       "dir": "down"
     },
     {
-      "label": "달러인덱스 (26일)",
-      "value": "103.80",
-      "change": "-0.26",
+      "label": "브렌트유",
+      "value": "$95.44",
+      "change": "-1.2%",
       "dir": "down"
-    },
-    {
-      "label": "미 국채 10년물 (선물 기준)",
-      "value": "4.846%",
-      "change": "현물 휴장",
-      "dir": "flat"
-    },
-    {
-      "label": "WTI (26일 장중)",
-      "value": "$84.44",
-      "change": "+0.91%",
-      "dir": "up"
-    },
-    {
-      "label": "브렌트유 (26일 장중)",
-      "value": "$94.96",
-      "change": "+0.37%",
-      "dir": "up"
     }
   ],
-  "marketNote": "뉴욕증시는 26일(목, 현지) 추수감사절 휴장이라 지수 대신 선물 흐름만 전했어(다우·나스닥100·S&P500 선물 모두 상승). 코스피·코스닥·원·달러·달러인덱스는 26일 서울 마감, 10년물은 채권 현물시장 휴장으로 선물 기준, 유가는 휴장으로 정산가가 없어 26일 미 중부시간 오전 6시 11분 시세(전일 정산가 대비)야. 비트코인과 페드워치 확률은 오늘 확인된 수치가 없어 뺐어.",
+  "marketNote": "뉴욕 3대 지수는 27일(금, 현지) 블랙프라이데이 단축장 종가, 유가는 27일 정산가(WTI는 25일 정산가 대비)야. 코스피·코스닥·원·달러·10년물·달러인덱스·비트코인·페드워치는 오늘 확인된 수치가 없어 뺐어.",
   "news": [
     {
-      "title": "한은 기준금리 3.25%로 인상, 내년 성장률 4.1% 전망",
-      "body": "한은이 올해 세 번째 인상으로 기준금리를 3.25%로 올렸고 내년 성장률 전망을 2.9%에서 4.1%로 크게 높였어. 반도체 호황과 10월 수출 급증이 배경이고 점도표는 추가 인상 쪽으로 기울었어.",
-      "sowhat": "변동금리 대출이 있다면 이자 부담이 더 커질 수 있는 흐름이야."
+      "title": "뉴욕증시, 블프 단축장서 급등하며 '최고의 한 주'",
+      "body": "메모리·반도체주가 일제히 반등하며 필라델피아 반도체지수가 4.69% 뛰었어. 주간으로 다우는 5.46% 올라 2022년 10월 이후 최고, 나스닥은 6.68% 올랐어.",
+      "sowhat": "반도체 반등은 삼성전자·SK하이닉스 비중이 큰 코스피에도 우호적인 흐름이야."
     },
     {
-      "title": "호르무즈·사우디 공격 주장에 유가 사흘째 상승",
-      "body": "이란 혁명수비대는 호르무즈 인근에서 유조선 두 척이 기뢰에 맞았다고 했고 후티는 사우디 라스타누라 정유시설 공격을 주장했어. 둘 다 독립적으로 확인되진 않았고 29일 일요일 오펙플러스 회의가 다음 변수야.",
-      "sowhat": "유가가 오르면 국내 기름값과 물가에 다시 부담이 돼."
+      "title": "미 3분기 GDP 4.3%로 상향, 10월 PCE 물가 3.8%",
+      "body": "3분기 성장률 잠정치가 연율 4.3%로 예상을 크게 웃돌았고 10월 PCE 물가는 전년 대비 3.8%, 근원은 3.3%였어. 신규 실업수당 청구도 18만9천 건으로 예상보다 훨씬 적었어.",
+      "sowhat": "경기와 물가가 모두 뜨거워 연준 추가 인상 부담이 커지고 대출 금리에도 영향을 줄 수 있어."
     },
     {
-      "title": "미국, 블프 직전 14개국 과잉생산 관세 예고",
-      "body": "미국이 한국을 포함한 14개 경제주체에 과잉생산 관세를 예고했고 한국은 전체 15% 상한이 유지될 전망이야. 예일대 버짓랩은 평균 관세율이 약 11%에서 13.9%로 올라 소비자물가를 최대 0.3% 높일 수 있다고 봤어.",
-      "sowhat": "미국 물가가 오르면 연준 추가 인상 명분이 커져 우리 증시에도 부담이 될 수 있어."
+      "title": "삼성전자 역대 최대 30조 원 분기 배당 지급",
+      "body": "주당 4,601원으로 직전 분기 374원보다 12배 넘게 늘었고 개인투자자 몫만 5조 원이 넘는 것으로 추산돼. 다음 달엔 SK하이닉스도 약 14조 원을 배당해.",
+      "sowhat": "외국인 배당 송금이 몰리면 원·달러 환율을 끌어올리는 요인이 될 수 있어."
     },
     {
-      "title": "미 3분기 GDP 4.3%로 상향, 트럼프는 '가짜' 주장",
-      "body": "미 상무부가 3분기 성장률을 3.4%에서 4.3%로 상향 수정했고 같은 날 10월 PCE 물가는 3.8%로 나왔어. 트럼프 대통령은 이 수정치를 문제 삼아 상무부 조사를 요구했어.",
-      "sowhat": "성장과 물가가 둘 다 뜨거워 연준 12월 인상 전망이 굳어지는 분위기야."
+      "title": "중동 공격에 브렌트유 11월 첫 주간 상승",
+      "body": "사우디 지잔 정유시설 피격과 호르무즈 인근 유조선 공격으로 브렌트유는 주간 약 3% 올랐어. 다만 금요일엔 1.2% 내린 95.44달러로 마감했고 11월 전체로는 20% 가까이 하락한 상태야.",
+      "sowhat": "유가가 다시 오르면 국내 기름값과 물가에 부담이 돼."
+    },
+    {
+      "title": "엔비디아, 동남아 AI 서버 출하 중단 보도",
+      "body": "새 미국 수출 규정 이후 말레이시아·싱가포르·태국·인도네시아로의 AI 서버 출하를 멈췄다는 보도가 나왔어. 젠슨 황은 다음 주 의회 비공개 면담과 3일 상원 공개 청문회에 나서.",
+      "sowhat": "엔비디아 뉴스는 국내 반도체주 변동성으로 바로 이어질 수 있어."
     }
   ],
   "voices": [
     {
-      "who": "신현송",
-      "role": "한국은행 총재",
-      "when": "26일 통화정책방향 기자간담회",
-      "said": "물가가 목표에 안정적으로 수렴한다는 확신이 들 때까지 대응하겠다고 했어. 추가 인상 시점은 성장과 물가 흐름을 보고 정하겠대.",
-      "why": "추가 인상 가능성을 열어둬서 국고채 단기 금리가 올랐어."
+      "who": "사우디 에너지부",
+      "role": "사우디아라비아 정부",
+      "when": "26일 성명",
+      "said": "지잔 정유시설에 발사체가 떨어져 작업자 한 명이 숨지고 일부 가동이 일시 중단됐다고 밝혔어.",
+      "why": "후티의 라스타누라 공격 주장에 이어 나와 이번 주 유가 공급 우려를 키웠어."
     },
     {
-      "who": "도널드 트럼프",
-      "role": "미국 대통령",
-      "when": "26일 트루스소셜",
-      "said": "3분기 GDP가 선거 뒤에 상향 수정된 걸 두고 상무부가 일부러 틀린 숫자를 냈다며 조사를 요구했어.",
-      "why": "AP는 통계 수정이 정해진 일정대로 이뤄지고 정치적 의도의 증거는 제시되지 않았다고 전했어. 통계 신뢰성 논란이 커질 수 있어."
-    },
-    {
-      "who": "제이미슨 그리어",
-      "role": "미국 무역대표부(USTR) 대표",
-      "when": "이번 주 CNBC",
-      "said": "새 과잉생산 관세에서 15% 상한이 기존 무역합의와 일치한다고 설명했어.",
-      "why": "한국처럼 합의를 맺은 나라는 추가 부담이 제한될 수 있다는 신호야."
+      "who": "바심 모하메드 후다이르",
+      "role": "이라크 석유장관",
+      "when": "이번 주 로이터 보도",
+      "said": "이라크가 오펙과 생산 한도 상향을 협상 중이라고 했어.",
+      "why": "한도가 늘면 공급 확대 요인이라 29일 오펙플러스 회의의 변수야."
     }
   ],
   "schedule": [
     {
-      "time": "오늘 종일",
-      "stars": 2,
-      "title": "삼성전자 배당금 지급",
-      "detail": "외국인 배당 역송금 수요로 원·달러 환율 영향 주목"
-    },
-    {
-      "time": "오늘 08:30",
-      "stars": 1,
-      "title": "일본 도쿄 11월 소비자물가(CPI)",
-      "detail": "일본은행 금리 경로 가늠자"
-    },
-    {
-      "time": "내일 03:00",
-      "stars": 2,
-      "title": "뉴욕증시 블랙프라이데이 조기 폐장",
-      "detail": "현지 27일 오후 1시 마감, 연말 쇼핑 성적 주목"
-    },
-    {
-      "time": "11월 29일",
+      "time": "11월 29일 (일)",
       "stars": 2,
       "title": "오펙플러스 장관회의",
-      "detail": "2027년 산유 정책 논의, 현행 목표 유지 가능성 보도"
+      "detail": "2027년 1분기 생산목표 동결 관측"
     },
     {
-      "time": "11월 30일",
+      "time": "12월 2일 00:00",
+      "stars": 2,
+      "title": "미국 11월 ISM 제조업지수·10월 구인건수(JOLTS)",
+      "detail": "ISM 예상 55.2 (이전 55.5)"
+    },
+    {
+      "time": "12월 2일 22:15",
       "stars": 1,
-      "title": "브렌트유 1월물 만기",
-      "detail": "만기 앞두고 변동성 확대 가능"
+      "title": "미국 11월 ADP 민간고용",
+      "detail": "예상 8만 명 (이전 8만6천 명)"
     },
     {
       "time": "12월 3일",
       "stars": 2,
-      "title": "젠슨 황 상원 공개 청문회",
-      "detail": "엔비디아 회계 의혹 관련"
+      "title": "젠슨 황 상원 은행위 공개 청문회·테슬라 주총",
+      "detail": "AI 칩 수출통제 관련 증언"
+    },
+    {
+      "time": "12월 4일 00:00",
+      "stars": 1,
+      "title": "미국 11월 ISM 서비스업지수",
+      "detail": "예상 54.5"
+    },
+    {
+      "time": "12월 4일 22:30",
+      "stars": 3,
+      "title": "미국 11월 고용보고서",
+      "detail": "비농업 고용 예상 9만 명 (10월 16만5천), 실업률 4.1% 예상"
     }
   ],
-  "scheduleNote": "블랙프라이데이 매출이 예상보다 강하면 소비 탄탄 신호지만 물가·금리 부담을 키울 수 있고, 약하면 관세가 소비를 누른다는 해석이 나올 수 있어.",
+  "scheduleNote": "고용이 예상보다 강하면 연준 12월 인상 전망이 굳어져 금리가 오를 수 있고, 약하면 인상 속도 조절 기대가 생길 수 있어.",
   "term": {
-    "word": "점도표 (Dot Plot)",
-    "body": "금리를 정하는 위원들이 앞으로 금리가 어디쯤 있을지 각자 점 하나씩 찍어 모은 그림이야. 어제 한은 점도표에서 21개 점 중 15개가 지금 금리 3.25%보다 위에 있어서 대부분이 추가 인상을 생각하고 있다는 뜻으로 읽혔어."
+    "word": "비농업 고용 (Nonfarm Payrolls)",
+    "body": "미국 고용보고서에서 농업을 뺀 나머지 분야에서 한 달 동안 늘어난 일자리 수야. 계절에 따라 들쭉날쭉한 농업을 빼야 경기 흐름이 또렷하게 보여서 연준과 시장이 가장 먼저 챙겨 보는 숫자야."
   },
   "sources": [
     {
-      "title": "허프포스트코리아 - 한은 기준금리 3.25%로 인상, 추가 인상 예고",
-      "url": "https://www.huffingtonpost.kr/article/262437"
+      "title": "TradingKey - Dow Posts Best Week Since 2022 in Black Friday Rally",
+      "url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262325775-nasdaq-leads-black-friday-rally-dow-posts-best-week-since-2022-tradingkey"
     },
     {
-      "title": "ZDNet Korea - 신현송 한은 총재, 추가 금리인상 시사",
-      "url": "https://zdnet.co.kr/view/?no=20261126125222"
+      "title": "StockTitan - Stock Market Today, November 27, 2026",
+      "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-27-2026"
     },
     {
-      "title": "서울경제 - 금리 인상에도 환율 보합…국고채는 매파 점도표에 상승",
-      "url": "https://www.sedaily.com/article/20119477"
+      "title": "The Circuitry - Brent settles Friday at $95.44 and WTI at $83.08",
+      "url": "https://thecircuitry.to/article/brent-settles-friday-at-9544-and-wti-at-8308-mwzhz7en"
     },
     {
-      "title": "글로벌이코노믹 - 코스피 0.29%↑ 4710선 마감",
-      "url": "https://www.g-enews.com/article/Securities/2026/11/202611261545398813923c501012_1"
+      "title": "Political.org - Oil Posts First Weekly Gain of November",
+      "url": "https://political.org/2026/11/27/oil-posts-first-weekly-gain-of-november-as-attacks-on-tankers-and-saudi-facilities-revive-supply-fears/"
     },
     {
-      "title": "뉴스1 - 달러·원 환율 1342.7원 소폭 하락",
-      "url": "https://www.news1.kr/finance/market-exr/6367344"
+      "title": "Economic Weekly - November 27, 2026",
+      "url": "https://economicweekly.substack.com/p/economic-weekly-november-27-2026"
     },
     {
-      "title": "SBS - [글로벌 마켓시황] 추수감사절 휴장…금리 인상 전망 ↑",
-      "url": "https://news.sbs.co.kr/news/endPage.do?news_id=N1008865886"
+      "title": "뉴스핌 - 이재용 회장 4488억원…삼성전자 30조원 푼다",
+      "url": "https://www.newspim.com/news/view/20261127000678"
     },
     {
-      "title": "FinanceFeeds - Brent Crude $95.58: Three-Day Rally Into OPEC+ Sunday",
-      "url": "https://financefeeds.com/brent-crude-oil-price-95-58-thursday-three-day-rally-before-opec-plus-sunday-bull-100-bear-91/"
-    },
-    {
-      "title": "Energy News Beat - A Thanksgiving Energy Roundup: Hormuz Scare",
-      "url": "https://energynewsbeat.co/crude-oil/a-thanksgiving-energy-roundup-cheaper-gasoline-costlier-heat-and-a-hormuz-scare/"
-    },
-    {
-      "title": "아시아투데이 - 트럼프 관세의 역설",
-      "url": "https://www.asiatoday.co.kr/kn/view.php?key=20261127010010631"
-    },
-    {
-      "title": "PBS NewsHour - Trump calls GDP figures 'fake'",
-      "url": "https://www.pbs.org/newshour/politics/trump-calls-gdp-figures-fake-and-demands-an-investigation-of-commerce-department"
+      "title": "뉴스1 - 삼성전자, 오늘 역대 최대 30조 배당",
+      "url": "https://www.news1.kr/finance/general-stock/6368101"
     }
   ]
 }
